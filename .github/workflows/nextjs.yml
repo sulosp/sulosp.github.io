@@ -62,9 +62,7 @@ jobs:
           # You may remove this line if you want to manage the configuration yourself.
           static_site_generator: next
 
-      - name: Install Sanity CLI
-        run: npm install -g @sanity/cli
-
+    
       - name: Restore cache
         uses: actions/cache@v4
         with:
@@ -79,11 +77,13 @@ jobs:
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
 
-      - name: Build Sanity Studio
-        run: sanity build  
-        
+      - name: Deploy Studio 
+        run: npm run deploy
+
       - name: Build with Next.js
         run: ${{ steps.detect-package-manager.outputs.runner }} next build
+       
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
@@ -100,4 +100,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-

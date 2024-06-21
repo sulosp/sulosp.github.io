@@ -1,0 +1,36 @@
+name: Deploy Sanity Studio
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    name: Build and Deploy
+    runs-on: ubuntu-latest
+    env:
+      SANITY_AUTH_TOKEN: skABUHvlwwRpim49YvGquK7QNCR7vdnRLvLWZ9FPsAxtWAthcHC2kfgUx54xifvqrmqdkbMaBDnGRywRYCqe050aFLDbsANMVjCBpqKf13ijDKZswEKOP1wR687FtxPHw0JiZhNSH9LvPem5EReZwEOJ5Ix3Jv0D8KPUn8xU37lL18c4gaRY
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16.x'
+
+      - name: Cache Node Modules
+        uses: actions/cache@v3
+        id: cache-node-modules
+        with:
+          path: node_modules
+          key: ${{ runner.OS }}-node-modules-${{ hashFiles('**/package-lock.json') }}
+
+      - name: Install Dependencies
+        if: steps.cache-node-modules.outputs.cache-hit != 'true'
+        run: npm ci
+
+      - name: Deploy Sanity Studio
+        run: npm run deploy
+        env:
+          CI: true
