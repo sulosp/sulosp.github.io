@@ -65,6 +65,7 @@ export default function HeroText({ text, className = "" }: HeroTextProps) {
     };
 
     document.fonts.ready.then(initBackgrounds);
+    requestAnimationFrame(() => requestAnimationFrame(initBackgrounds));
     window.addEventListener("resize", syncCharBackgrounds);
 
     const chars = inner.querySelectorAll<HTMLElement>(".hero-char");
