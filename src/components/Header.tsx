@@ -168,7 +168,7 @@ export default function Header() {
             href="#"
             className="font-display text-xs font-medium tracking-[0.2em] uppercase sm:text-sm"
           >
-            Mira Chen
+            Sulochana Peiris
           </a>
 
           <div className="flex items-center justify-end gap-2 sm:gap-3">

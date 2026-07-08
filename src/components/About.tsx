@@ -60,7 +60,7 @@ export default function About() {
 
         <div className="reveal flex flex-col gap-5 sm:gap-6 md:gap-8">
           <p className="text-sm leading-relaxed text-subtle sm:text-base md:text-lg">
-            I&apos;m Mira — a UI/UX designer with 7+ years of experience shaping
+            I&apos;m Sulochana — a UI/UX designer with 7+ years of experience shaping
             digital products for startups and established brands. I believe great
             design lives at the intersection of clarity, beauty, and human
             understanding.

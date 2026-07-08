@@ -41,10 +41,10 @@ export default function Footer() {
         </span>
 
         <a
-          href="mailto:hello@mirachen.design"
+          href="mailto:hello@sulochanapeiris.design"
           className="font-display text-[clamp(1.75rem,8vw,5rem)] font-medium tracking-tight break-words transition-colors hover:text-muted"
         >
-          hello@mirachen.design
+          hello@sulochanapeiris.design
         </a>
 
         <div className="mt-12 flex flex-col justify-between gap-6 border-t border-border pt-8 sm:mt-16 sm:gap-8 sm:pt-10 md:mt-20 md:flex-row md:items-center">
@@ -61,7 +61,7 @@ export default function Footer() {
           </div>
 
           <p className="text-[10px] text-faint sm:text-xs">
-            &copy; {new Date().getFullYear()} Mira Chen. All rights reserved.
+            &copy; {new Date().getFullYear()} Sulochana Peiris. All rights reserved.
           </p>
         </div>
       </div>

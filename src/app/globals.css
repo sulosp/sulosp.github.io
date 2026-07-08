@@ -105,56 +105,59 @@ body {
   width: 100%;
 }
 
-.hero-text-line {
-  cursor: pointer;
-}
-
-.hero-text-mask {
+.hero-liquid-text {
+  position: relative;
+  width: 100%;
+  min-height: 10rem;
   overflow: hidden;
-  line-height: 0.92;
-}
-
-.hero-text-inner {
-  display: block;
-  font-family: var(--font-syne), system-ui, sans-serif;
-  font-size: clamp(2.25rem, 11vw, 10rem);
-  font-weight: 800;
-  letter-spacing: -0.04em;
-  text-transform: uppercase;
   will-change: transform, opacity;
 }
 
-.hero-char {
-  transform-origin: center bottom;
-  will-change: transform, background-position;
-  background-image: url("/holographic.jpg");
-  background-size: 160% auto;
-  background-position: 50% center;
-  background-repeat: no-repeat;
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
-  -webkit-text-fill-color: transparent;
+.hero-liquid-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
-.hero-text-line--hover .hero-char {
-  transition: background-position 0.1s linear;
+.hero-liquid-fallback {
+  display: none;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero-text-inner,
-  .hero-char {
-    will-change: auto;
+  .hero-liquid-canvas {
+    display: none;
   }
 
-  .hero-char {
-    background: none;
+  .hero-liquid-fallback {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    gap: clamp(0.25rem, 1vw, 1rem);
+  }
+
+  .hero-liquid-fallback-line {
+    display: block;
+    font-family: var(--font-syne), system-ui, sans-serif;
+    font-size: var(--hero-font-size, clamp(2.75rem, 18vw, 20rem));
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
+    line-height: 0.9;
     color: var(--foreground);
-    -webkit-text-fill-color: var(--foreground);
-  }
-
-  .hero-text-mask {
-    filter: none !important;
   }
 }
 

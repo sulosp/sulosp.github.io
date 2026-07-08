@@ -4,8 +4,7 @@ import {
   createContext,
   useCallback,
   useContext,
-  useEffect,
-  useState,
+  useSyncExternalStore,
 } from "react";
 
 type Theme = "light" | "dark";
@@ -17,6 +16,9 @@ interface ThemeContextValue {
 }
 
 const ThemeContext = createContext<ThemeContextValue | null>(null);
+
+const listeners = new Set<() => void>();
+let clientTheme: Theme | null = null;
 
 function getPreferredTheme(): Theme {
   const stored = localStorage.getItem("theme") as Theme | null;
@@ -31,27 +33,40 @@ function applyTheme(theme: Theme) {
   localStorage.setItem("theme", theme);
 }
 
-export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setThemeState] = useState<Theme>("dark");
+function subscribe(listener: () => void) {
+  listeners.add(listener);
+  return () => listeners.delete(listener);
+}
 
-  useEffect(() => {
-    const preferred = getPreferredTheme();
-    setThemeState(preferred);
-    applyTheme(preferred);
-  }, []);
+function getSnapshot(): Theme {
+  if (clientTheme) return clientTheme;
+  return getPreferredTheme();
+}
+
+function getServerSnapshot(): Theme {
+  return "dark";
+}
+
+function setThemeValue(theme: Theme) {
+  clientTheme = theme;
+  applyTheme(theme);
+  listeners.forEach((listener) => listener());
+}
+
+export function ThemeProvider({ children }: { children: React.ReactNode }) {
+  const theme = useSyncExternalStore(
+    subscribe,
+    getSnapshot,
+    getServerSnapshot,
+  );
 
   const setTheme = useCallback((next: Theme) => {
-    setThemeState(next);
-    applyTheme(next);
+    setThemeValue(next);
   }, []);
 
   const toggleTheme = useCallback(() => {
-    setThemeState((prev) => {
-      const next = prev === "dark" ? "light" : "dark";
-      applyTheme(next);
-      return next;
-    });
-  }, []);
+    setThemeValue(theme === "dark" ? "light" : "dark");
+  }, [theme]);
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme, setTheme }}>

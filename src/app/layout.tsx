@@ -18,9 +18,9 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Mira Chen — UI/UX Designer",
+  title: "Sulochana Peiris — UI/UX Designer",
   description:
-    "Portfolio of Mira Chen, a UI/UX designer crafting digital experiences with intention and empathy.",
+    "Portfolio of Sulochana Peiris, a UI/UX designer crafting digital experiences with intention and empathy.",
 };
 
 const themeScript = `
