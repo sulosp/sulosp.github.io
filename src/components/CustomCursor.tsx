@@ -12,45 +12,46 @@ export default function CustomCursor() {
     const ring = ringRef.current;
     if (!dot || !ring) return;
 
-    const move = (e: MouseEvent) => {
-      gsap.to(dot, {
-        x: e.clientX,
-        y: e.clientY,
-        duration: 0.15,
-        ease: "power2.out",
-      });
-      gsap.to(ring, {
-        x: e.clientX,
-        y: e.clientY,
-        duration: 0.45,
-        ease: "power2.out",
-      });
+    const canHover = window.matchMedia("(hover: hover)").matches;
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (!canHover || reduced) return;
+
+    const xDot = gsap.quickTo(dot, "x", { duration: 0.16, ease: "power3.out" });
+    const yDot = gsap.quickTo(dot, "y", { duration: 0.16, ease: "power3.out" });
+    const xRing = gsap.quickTo(ring, "x", { duration: 0.38, ease: "power3.out" });
+    const yRing = gsap.quickTo(ring, "y", { duration: 0.38, ease: "power3.out" });
+
+    const move = (event: MouseEvent) => {
+      xDot(event.clientX);
+      yDot(event.clientY);
+      xRing(event.clientX);
+      yRing(event.clientY);
     };
 
-    const hoverables = document.querySelectorAll("a, button, .hero-text-line, .hero-char, .work-card");
-
-    const onEnter = () => {
-      gsap.to(ring, { scale: 2.2, opacity: 0.4, duration: 0.3 });
-      gsap.to(dot, { scale: 0.5, duration: 0.3 });
+    const onOver = (event: MouseEvent) => {
+      const hit = (event.target as Element | null)?.closest("a, button, [data-cursor]");
+      if (hit) {
+        gsap.to(ring, { scale: 1.85, opacity: 0.45, duration: 0.28 });
+        gsap.to(dot, { scale: 0.45, duration: 0.28 });
+      }
     };
 
-    const onLeave = () => {
-      gsap.to(ring, { scale: 1, opacity: 1, duration: 0.3 });
-      gsap.to(dot, { scale: 1, duration: 0.3 });
+    const onOut = (event: MouseEvent) => {
+      const hit = (event.target as Element | null)?.closest("a, button, [data-cursor]");
+      if (hit) {
+        gsap.to(ring, { scale: 1, opacity: 1, duration: 0.28 });
+        gsap.to(dot, { scale: 1, duration: 0.28 });
+      }
     };
 
     window.addEventListener("mousemove", move);
-    hoverables.forEach((el) => {
-      el.addEventListener("mouseenter", onEnter);
-      el.addEventListener("mouseleave", onLeave);
-    });
+    document.addEventListener("mouseover", onOver);
+    document.addEventListener("mouseout", onOut);
 
     return () => {
       window.removeEventListener("mousemove", move);
-      hoverables.forEach((el) => {
-        el.removeEventListener("mouseenter", onEnter);
-        el.removeEventListener("mouseleave", onLeave);
-      });
+      document.removeEventListener("mouseover", onOver);
+      document.removeEventListener("mouseout", onOut);
     };
   }, []);
 

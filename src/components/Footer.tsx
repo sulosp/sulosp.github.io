@@ -1,68 +1,61 @@
-"use client";
-
-import { useEffect, useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
+import Image from "next/image";
+import { images, site } from "@/data/site";
+import Reveal from "./Reveal";
 
 export default function Footer() {
-  const sectionRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const section = sectionRef.current;
-    if (!section) return;
-
-    gsap.fromTo(
-      section.querySelector(".footer-content"),
-      { y: 60, opacity: 0 },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 1,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: section,
-          start: "top 80%",
-        },
-      },
-    );
-  }, []);
+  const year = new Date().getFullYear();
 
   return (
-    <footer
-      ref={sectionRef}
-      id="contact"
-      className="section-x section-y relative"
-    >
-      <div className="footer-content mx-auto max-w-7xl">
-        <span className="mb-4 block text-[10px] tracking-[0.25em] text-muted uppercase sm:mb-6 sm:text-xs sm:tracking-[0.3em]">
-          Get in Touch
-        </span>
+    <footer>
+      <section id="contact" className="section-x scroll-mt-28 py-[clamp(6rem,14vw,11rem)]">
+        <div className="content text-center">
+          <Reveal>
+            <h2 className="mx-auto max-w-[16ch] text-[clamp(2rem,5.2vw,4.2rem)] leading-[1.16] font-medium tracking-[-0.04em]">
+              Got a project in mind?
+            </h2>
+            <p className="mt-4 flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-[clamp(2rem,5.2vw,4.2rem)] leading-[1.16] font-medium tracking-[-0.04em]">
+              <span>Let&apos;s get</span>
+              <span className="relative inline-flex h-[0.82em] w-[0.82em] overflow-hidden rounded-full bg-image-bg align-middle">
+                <Image
+                  src={images.portrait}
+                  alt=""
+                  width={80}
+                  height={80}
+                  className="h-full w-full object-cover"
+                />
+              </span>
+              <span>started.</span>
+            </p>
+          </Reveal>
+          <Reveal delay={0.08} className="mt-10">
+            <a href={`mailto:${site.email}`} className="btn-primary rounded-[50px]">
+              Chat to me
+            </a>
+          </Reveal>
+        </div>
+      </section>
 
-        <a
-          href="mailto:hello@sulochanapeiris.design"
-          className="font-display text-[clamp(1.75rem,8vw,5rem)] font-medium tracking-tight break-words transition-colors hover:text-muted"
-        >
-          hello@sulochanapeiris.design
-        </a>
-
-        <div className="mt-12 flex flex-col justify-between gap-6 border-t border-border pt-8 sm:mt-16 sm:gap-8 sm:pt-10 md:mt-20 md:flex-row md:items-center">
-          <div className="flex flex-wrap gap-5 sm:gap-8">
-            {["Dribbble", "LinkedIn", "Twitter"].map((social) => (
-              <a
-                key={social}
-                href="#"
-                className="text-[10px] tracking-[0.15em] text-muted uppercase transition-colors hover:text-foreground sm:text-xs"
-              >
-                {social}
-              </a>
-            ))}
+      <div className="bg-footer text-footer-fg">
+        <div className="section-x py-20 md:py-28">
+          <div className="content flex flex-col items-center text-center">
+            <p className="text-2xl font-semibold tracking-tight lowercase">{site.wordmark}</p>
+            <a
+              href={`mailto:${site.email}`}
+              className="mt-10 text-sm underline decoration-footer-fg/30 underline-offset-4 hover:decoration-footer-fg"
+            >
+              {site.email}
+            </a>
+            <div className="mt-8 flex flex-wrap justify-center gap-x-8 gap-y-3 text-xs tracking-wide uppercase opacity-70">
+              {site.socials.map((social) => (
+                <a key={social.label} href={social.href} target="_blank" rel="noreferrer">
+                  {social.label}
+                </a>
+              ))}
+            </div>
+            <p className="mt-14 text-xs opacity-55">
+              © {site.name} {year}. All rights reserved.
+            </p>
           </div>
-
-          <p className="text-[10px] text-faint sm:text-xs">
-            &copy; {new Date().getFullYear()} Sulochana Peiris. All rights reserved.
-          </p>
         </div>
       </div>
     </footer>

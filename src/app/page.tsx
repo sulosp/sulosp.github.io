@@ -1,21 +1,23 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
-import Marquee from "@/components/Marquee";
+import Statement from "@/components/Statement";
+import Process from "@/components/Process";
 import Work from "@/components/Work";
-import About from "@/components/About";
+import Stats from "@/components/Stats";
 import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <>
+    <div className="site-shell">
       <Header />
       <main>
         <Hero />
-        <Marquee />
+        <Statement />
+        <Process />
         <Work />
-        <About />
-        <Footer />
+        <Stats />
       </main>
-    </>
+      <Footer />
+    </div>
   );
 }

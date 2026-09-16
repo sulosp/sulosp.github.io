@@ -5,6 +5,7 @@ import {
   useCallback,
   useContext,
   useSyncExternalStore,
+  type ReactNode,
 } from "react";
 
 type Theme = "light" | "dark";
@@ -44,7 +45,7 @@ function getSnapshot(): Theme {
 }
 
 function getServerSnapshot(): Theme {
-  return "dark";
+  return "light";
 }
 
 function setThemeValue(theme: Theme) {
@@ -53,7 +54,7 @@ function setThemeValue(theme: Theme) {
   listeners.forEach((listener) => listener());
 }
 
-export function ThemeProvider({ children }: { children: React.ReactNode }) {
+export function ThemeProvider({ children }: { children: ReactNode }) {
   const theme = useSyncExternalStore(
     subscribe,
     getSnapshot,

@@ -1,26 +1,23 @@
-import type { Metadata } from "next";
-import { Syne, DM_Sans } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
 import CustomCursor from "@/components/CustomCursor";
 import { ThemeProvider } from "@/components/ThemeProvider";
 
-const syne = Syne({
-  variable: "--font-syne",
+const jakarta = Plus_Jakarta_Sans({
+  variable: "--font-jakarta",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
-});
-
-const dmSans = DM_Sans({
-  variable: "--font-dm-sans",
-  subsets: ["latin"],
-  weight: ["400", "500", "700"],
 });
 
 export const metadata: Metadata = {
-  title: "Sulochana Peiris — UI/UX Designer",
+  title: "Sulochana Peiris — UI & UX Design",
   description:
-    "Portfolio of Sulochana Peiris, a UI/UX designer crafting digital experiences with intention and empathy.",
+    "I craft easy, human-centric digital experiences — brand identities, design systems, and product interfaces with a balance of beauty and performance.",
+};
+
+export const viewport: Viewport = {
+  themeColor: "#ffffff",
 };
 
 const themeScript = `
@@ -31,7 +28,7 @@ const themeScript = `
     var theme = stored === "light" || stored === "dark" ? stored : prefersDark ? "dark" : "light";
     document.documentElement.setAttribute("data-theme", theme);
   } catch (e) {
-    document.documentElement.setAttribute("data-theme", "dark");
+    document.documentElement.setAttribute("data-theme", "light");
   }
 })();
 `;
@@ -42,11 +39,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${syne.variable} ${dmSans.variable}`} suppressHydrationWarning>
+    <html lang="en" className={jakarta.variable} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
-      <body className="bg-background text-foreground overflow-x-hidden antialiased">
+      <body className="bg-background font-sans text-foreground antialiased">
         <ThemeProvider>
           <SmoothScroll>
             <CustomCursor />

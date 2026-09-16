@@ -1,232 +1,105 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
+import { usePathname } from "next/navigation";
 import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import { navLinks, site } from "@/data/site";
 import ThemeToggle from "./ThemeToggle";
 
-const navLinks = [
-  {
-    label: "Work",
-    href: "#work",
-    image:
-      "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=700&h=700&fit=crop",
-  },
-  {
-    label: "About",
-    href: "#about",
-    image:
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=700&h=700&fit=crop",
-  },
-  {
-    label: "Contact",
-    href: "#contact",
-    image:
-      "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=700&h=700&fit=crop",
-  },
-];
+gsap.registerPlugin(useGSAP);
 
 export default function Header() {
   const headerRef = useRef<HTMLElement>(null);
-  const menuRef = useRef<HTMLDivElement>(null);
-  const linksRef = useRef<HTMLUListElement>(null);
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+  const navHref = (href: string) => (pathname === "/" ? href : `/${href}`);
 
-  useEffect(() => {
-    const header = headerRef.current;
-    if (!header) return;
-
-    gsap.fromTo(
-      header,
-      { y: -40, opacity: 0 },
-      { y: 0, opacity: 1, duration: 1, ease: "power3.out", delay: 0.3 },
-    );
-  }, []);
-
-  useEffect(() => {
-    const menu = menuRef.current;
-    const links = linksRef.current;
-    if (!menu || !links) return;
-
-    const linkItems = links.querySelectorAll(".menu-item");
-
-    if (menuOpen) {
-      document.body.style.overflow = "hidden";
-      gsap.to(menu, {
-        autoAlpha: 1,
-        pointerEvents: "auto",
-        duration: 0.5,
-        ease: "power3.out",
+  useGSAP(
+    () => {
+      const header = headerRef.current;
+      if (!header) return;
+      const mm = gsap.matchMedia();
+      mm.add("(prefers-reduced-motion: no-preference)", () => {
+        gsap.fromTo(
+          header,
+          { y: -16, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.8, ease: "power3.out", delay: 0.15 },
+        );
       });
-      gsap.fromTo(
-        linkItems,
-        { y: 60, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.6,
-          stagger: 0.1,
-          ease: "power3.out",
-          delay: 0.15,
-        },
-      );
-    } else {
-      document.body.style.overflow = "";
-      gsap.to(menu, {
-        autoAlpha: 0,
-        pointerEvents: "none",
-        duration: 0.35,
-        ease: "power2.in",
-      });
-      gsap.set(linkItems, { y: 60, opacity: 0 });
-    }
+    },
+    { scope: headerRef },
+  );
 
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [menuOpen]);
-
-  useEffect(() => {
-    const links = linksRef.current;
-    if (!links) return;
-
-    const items = gsap.utils.toArray<HTMLElement>(".menu-item-container");
-    const cleanups: (() => void)[] = [];
-
-    gsap.set(".menu-preview-image", { xPercent: -50, yPercent: -50, scale: 0.85 });
-
-    items.forEach((el) => {
-      const image = el.querySelector<HTMLImageElement>(".menu-preview-image");
-      if (!image) return;
-
-      let firstEnter = true;
-
-      const setX = gsap.quickTo(image, "x", { duration: 0.4, ease: "power3" });
-      const setY = gsap.quickTo(image, "y", { duration: 0.4, ease: "power3" });
-
-      const align = (e: MouseEvent) => {
-        if (firstEnter) {
-          setX(e.clientX, e.clientX);
-          setY(e.clientY, e.clientY);
-          firstEnter = false;
-        } else {
-          setX(e.clientX);
-          setY(e.clientY);
-        }
-      };
-
-      const startFollow = () =>
-        document.addEventListener("mousemove", align);
-      const stopFollow = () =>
-        document.removeEventListener("mousemove", align);
-
-      const fade = gsap.fromTo(
-        image,
-        { autoAlpha: 0, scale: 0.85 },
-        {
-          autoAlpha: 1,
-          scale: 1,
-          ease: "power3.out",
-          paused: true,
-          duration: 0.25,
-          onReverseComplete: stopFollow,
-        },
-      );
-
-      const onEnter = (e: MouseEvent) => {
-        firstEnter = true;
-        fade.play();
-        startFollow();
-        align(e);
-      };
-
-      const onLeave = () => fade.reverse();
-
-      el.addEventListener("mouseenter", onEnter);
-      el.addEventListener("mouseleave", onLeave);
-
-      cleanups.push(() => {
-        el.removeEventListener("mouseenter", onEnter);
-        el.removeEventListener("mouseleave", onLeave);
-        stopFollow();
-        fade.kill();
-      });
-    });
-
-    return () => cleanups.forEach((fn) => fn());
-  }, []);
-
-  const closeMenu = () => setMenuOpen(false);
+  const close = () => setOpen(false);
 
   return (
-    <>
-      <header
-        ref={headerRef}
-        className="section-x fixed top-0 right-0 left-0 z-50 py-4 sm:py-5 md:py-6 lg:py-8"
-      >
-        <div className="mx-auto flex max-w-7xl items-center justify-between">
-          <a
-            href="#"
-            className="font-display text-xs font-medium tracking-[0.2em] uppercase sm:text-sm"
-          >
-            Sulochana Peiris
-          </a>
+    <header
+      ref={headerRef}
+      className="section-x fixed top-0 right-0 left-0 z-50 bg-background py-5 md:py-6"
+    >
+      <div className="content flex items-center justify-between gap-6">
+        <a href="/" className="text-[15px] font-semibold tracking-tight lowercase">
+          {site.wordmark}
+        </a>
 
-          <div className="flex items-center justify-end gap-2 sm:gap-3">
-            <ThemeToggle />
-
-            <button
-              type="button"
-              onClick={() => setMenuOpen((prev) => !prev)}
-              className="menu-toggle relative z-60 flex h-10 w-10 items-center justify-center rounded-full border border-border transition-colors hover:border-border-strong sm:h-11 sm:w-11"
-              aria-label={menuOpen ? "Close menu" : "Open menu"}
-              aria-expanded={menuOpen}
+        <nav className="hidden items-center gap-10 lg:flex" aria-label="Primary">
+          {navLinks.map((link) => (
+            <a
+              key={link.href}
+              href={navHref(link.href)}
+              className="text-[13.5px] text-subtle hover:text-foreground"
             >
-              <span className={`menu-bar ${menuOpen ? "menu-bar--open" : ""}`} />
-            </button>
-          </div>
-        </div>
-      </header>
+              {link.label}
+            </a>
+          ))}
+        </nav>
 
-      <div
-        ref={menuRef}
-        className="menu-overlay fixed inset-0 z-40 flex h-dvh w-full flex-col opacity-0 pointer-events-none"
-        aria-hidden={!menuOpen}
-      >
-        <nav className="flex h-full w-full flex-col justify-center section-x">
-          <ul ref={linksRef} className="w-full" role="list">
-            {navLinks.map((link) => (
-              <li key={link.href} className="menu-item-container w-full">
-                <img
-                  className="menu-preview-image"
-                  src={link.image}
-                  alt=""
-                  draggable={false}
-                />
-                <a
-                  href={link.href}
-                  onClick={closeMenu}
-                  className="menu-item group flex w-full items-center justify-between border-b border-border py-6 sm:py-8 md:py-10"
-                >
-                  <span className="font-display text-[clamp(2.5rem,8vw,5rem)] font-medium tracking-tight transition-colors duration-300 group-hover:text-muted">
-                    {link.label}
-                  </span>
-                  <span className="text-xs tracking-[0.2em] text-faint uppercase transition-transform duration-300 group-hover:translate-x-1">
-                    →
-                  </span>
-                </a>
-              </li>
-            ))}
-          </ul>
-
-          <a
-            href="#contact"
-            onClick={closeMenu}
-            className="menu-item mt-6 inline-flex w-fit rounded-full border border-border-strong px-6 py-3 text-xs font-medium tracking-[0.15em] uppercase transition-colors hover:bg-invert-bg hover:text-invert-fg sm:mt-10"
+        <div className="flex items-center gap-3 sm:gap-4">
+          <ThemeToggle />
+          <a href="#contact" className="btn-primary hidden rounded-[50px] sm:inline-flex">
+            Start a project
+          </a>
+          <button
+            type="button"
+            className="flex h-9 w-9 items-center justify-center rounded-[50px] lg:hidden"
+            aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
+            onClick={() => setOpen((value) => !value)}
           >
-            Let&apos;s Talk
+            <span className="sr-only">Menu</span>
+            <span className="relative block h-3.5 w-4">
+              <span
+                className={`absolute left-0 h-px w-4 bg-foreground transition ${open ? "top-1.5 rotate-45" : "top-0.5"}`}
+              />
+              <span
+                className={`absolute left-0 h-px w-4 bg-foreground transition ${open ? "top-1.5 -rotate-45" : "top-3"}`}
+              />
+            </span>
+          </button>
+        </div>
+      </div>
+
+      {open ? (
+        <nav
+          className="content mt-5 flex flex-col gap-1 border-t border-border pt-5 pb-3 lg:hidden"
+          aria-label="Mobile"
+        >
+          {navLinks.map((link) => (
+            <a
+              key={link.href}
+              href={navHref(link.href)}
+              onClick={close}
+              className="py-3 text-lg font-medium"
+            >
+              {link.label}
+            </a>
+          ))}
+          <a href="#contact" onClick={close} className="btn-primary mt-4 w-fit rounded-[50px]">
+            Start a project
           </a>
         </nav>
-      </div>
-    </>
+      ) : null}
+    </header>
   );
 }
