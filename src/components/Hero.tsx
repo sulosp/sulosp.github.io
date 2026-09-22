@@ -37,16 +37,16 @@ export default function Hero() {
 
   return (
     <section ref={sectionRef} className="hero-section section-x pb-16 md:pb-20">
-      <div className="content">
-        <h1 className="max-w-[11.5ch] text-[clamp(2.6rem,7.4vw,6.1rem)] leading-[1.08] font-medium tracking-[-0.045em]">
+      <div className="content text-center">
+        <h1 className="mx-auto text-[clamp(2.1rem,5.6vw,4.6rem)] leading-[1.16] font-medium tracking-[-0.035em]">
           {lines.map((line) => (
-            <span key={line} className="block overflow-hidden">
+            <span key={line} className="block overflow-hidden py-[0.08em]">
               <span className="hero-line-inner block">{line}</span>
             </span>
           ))}
         </h1>
 
-        <p className="hero-fade mt-8 max-w-xl text-[15px] leading-7 text-muted sm:mt-10 sm:text-base sm:leading-8">
+        <p className="hero-fade mx-auto mt-8 max-w-xl text-[15px] leading-7 text-muted sm:mt-10 sm:text-base sm:leading-8">
           Finding the balance between aesthetic beauty and technical performance — I
           create future-proof identities, scalable systems and human-friendly digital
           products.

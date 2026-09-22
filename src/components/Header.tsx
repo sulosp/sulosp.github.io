@@ -13,7 +13,12 @@ export default function Header() {
   const headerRef = useRef<HTMLElement>(null);
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
-  const navHref = (href: string) => (pathname === "/" ? href : `/${href}`);
+  const navHref = (href: string) => {
+    if (href.startsWith("/")) return href;
+    return pathname === "/" ? href : `/${href}`;
+  };
+  const isActive = (href: string) =>
+    href.startsWith("/") && (pathname === href || pathname.startsWith(`${href}/`));
 
   useGSAP(
     () => {
@@ -38,8 +43,8 @@ export default function Header() {
       ref={headerRef}
       className="section-x fixed top-0 right-0 left-0 z-50 bg-background py-5 md:py-6"
     >
-      <div className="content flex items-center justify-between gap-6">
-        <a href="/" className="text-[15px] font-semibold tracking-tight lowercase">
+      <div className="content grid grid-cols-[1fr_auto_1fr] items-center gap-6">
+        <a href="/" className="justify-self-start text-[15px] font-semibold tracking-tight lowercase">
           {site.wordmark}
         </a>
 
@@ -48,14 +53,15 @@ export default function Header() {
             <a
               key={link.href}
               href={navHref(link.href)}
-              className="text-[13.5px] text-subtle hover:text-foreground"
+              aria-current={isActive(link.href) ? "page" : undefined}
+              className={`text-[13.5px] hover:text-foreground ${isActive(link.href) ? "text-foreground" : "text-subtle"}`}
             >
               {link.label}
             </a>
           ))}
         </nav>
 
-        <div className="flex items-center gap-3 sm:gap-4">
+        <div className="flex items-center justify-self-end gap-3 sm:gap-4">
           <ThemeToggle />
           <a href="#contact" className="btn-primary hidden rounded-[50px] sm:inline-flex">
             Start a project
@@ -90,6 +96,7 @@ export default function Header() {
               key={link.href}
               href={navHref(link.href)}
               onClick={close}
+              aria-current={isActive(link.href) ? "page" : undefined}
               className="py-3 text-lg font-medium"
             >
               {link.label}

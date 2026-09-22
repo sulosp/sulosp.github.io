@@ -2,7 +2,7 @@ import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Statement from "@/components/Statement";
 import Process from "@/components/Process";
-import Work from "@/components/Work";
+import WorkGallery from "@/components/WorkGallery";
 import Stats from "@/components/Stats";
 import Footer from "@/components/Footer";
 
@@ -12,9 +12,9 @@ export default function Home() {
       <Header />
       <main>
         <Hero />
-        <Statement />
+        <WorkGallery />
         <Process />
-        <Work />
+        <Statement />
         <Stats />
       </main>
       <Footer />

@@ -19,7 +19,7 @@ export default function HallerCaseStudy() {
         <article className="content">
           <Reveal>
             <a
-              href="/#work"
+              href="/work"
               className="text-[13px] tracking-wide text-muted uppercase hover:text-foreground"
             >
               ← Work
@@ -142,11 +142,23 @@ export default function HallerCaseStudy() {
                 romance, structured and legible where it needs to function as a booking site.
               </p>
             </Reveal>
-            <CaseImage
-              src="/images/haller/hero.png"
-              alt="Hero typography: Italiana wordmark and tracked-out UI labels"
-              caption="Serif wordmark against tracked-out UI labels — romance in the image, structure in the interface."
-            />
+            <figure className="my-10 w-full md:my-14">
+              <div className="relative aspect-[16/9] w-full overflow-hidden rounded-[1.35rem] bg-[var(--image-bg)]">
+                <iframe
+                  src="https://embed.figma.com/design/OYu8vTYOVzxkkzNNwMaYhR/Haller-Natural?node-id=0-1&embed-host=share"
+                  title="Haller Natural"
+                  width="800"
+                  height="450"
+                  className="absolute inset-0 h-full w-full"
+                  style={{ border: "1px solid rgba(0, 0, 0, 0.1)" }}
+                  allowFullScreen
+                />
+              </div>
+              <figcaption className="mt-3 text-[13px] leading-6 text-faint">
+                Serif wordmark against tracked-out UI labels — romance in the image, structure in
+                the interface.
+              </figcaption>
+            </figure>
           </section>
 
           <section className="pt-16 md:pt-20">

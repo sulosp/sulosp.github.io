@@ -86,6 +86,10 @@ body {
     color 0.4s ease;
 }
 
+.work-gallery-track {
+  will-change: transform;
+}
+
 .site-shell {
   position: relative;
 }
