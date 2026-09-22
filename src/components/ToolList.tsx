@@ -1,9 +1,18 @@
-import type { ReactNode } from "react";
+"use client";
+
+import { useRef, type ReactNode } from "react";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import { Observer } from "gsap/Observer";
+import { horizontalLoop } from "@/lib/horizontalLoop";
+
+gsap.registerPlugin(useGSAP, Observer);
 
 const tools = [
   { name: "Webflow", icon: WebflowIcon },
   { name: "Framer", icon: FramerIcon },
   { name: "Figma", icon: FigmaIcon },
+  { name: "Rive", icon: RiveIcon },
   { name: "Next.js", icon: NextIcon },
   { name: "HTML", icon: HtmlIcon },
   { name: "CSS", icon: CssIcon },
@@ -101,18 +110,70 @@ function WordPressIcon() {
   );
 }
 
-export default function ToolList() {
+function RiveIcon() {
   return (
-    <ul className="mt-7 flex flex-wrap gap-x-4 gap-y-3">
-      {tools.map((tool) => (
-        <li
-          key={tool.name}
-          className="inline-flex items-center gap-2 text-[13px] font-medium tracking-tight text-subtle"
-        >
-          <tool.icon />
-          {tool.name}
-        </li>
-      ))}
-    </ul>
+    <IconWrap>
+      <path d="M.643 1.475c0 .814.668 1.475 1.49 1.475H14.49c1.408 0 2.568.43 3.48 1.29.91.861 1.366 1.967 1.366 3.32 0 1.25-.456 2.274-1.367 3.072-.911.78-2.07 1.168-3.479 1.168H9.12c-.824 0-1.491.66-1.491 1.475 0 .815.667 1.475 1.491 1.475h5.93l5.342 8.482c.332.512.797.768 1.398.768.663 0 1.129-.256 1.398-.768.269-.533.217-1.096-.155-1.69l-4.753-7.56c1.284-.574 2.299-1.414 3.044-2.52.746-1.127 1.119-2.427 1.119-3.902 0-1.496-.342-2.807-1.026-3.934-.662-1.127-1.594-2.008-2.795-2.643C17.42.327 16.044 0 14.49 0H2.134C1.311 0 .643.66.643 1.475Z" />
+    </IconWrap>
+  );
+}
+
+export default function ToolList() {
+  const rootRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(
+    () => {
+      const root = rootRef.current;
+      if (!root) return;
+
+      const mm = gsap.matchMedia();
+      mm.add("(prefers-reduced-motion: no-preference)", () => {
+        const items = gsap.utils.toArray<HTMLElement>(".tool-marquee-item", root);
+        const loop = horizontalLoop(items, {
+          repeat: -1,
+          speed: 0.85,
+          paddingRight: 32,
+        });
+
+        const observer = Observer.create({
+          type: "wheel,touch,pointer,scroll",
+          onChangeY(self) {
+            const direction = self.deltaY < 0 ? -1 : 1;
+            const boost = gsap.utils.clamp(1, 3.2, Math.abs(self.velocityY) / 1800);
+
+            gsap
+              .timeline({ defaults: { ease: "none" } })
+              .to(loop, { timeScale: direction * boost * 1.6, duration: 0.18, overwrite: true })
+              .to(loop, { timeScale: direction, duration: 1, ease: "power1.out" }, "+=0.25");
+          },
+        });
+
+        return () => observer.kill();
+      });
+    },
+    { scope: rootRef },
+  );
+
+  const row = [...tools, ...tools];
+
+  return (
+    <div
+      ref={rootRef}
+      className="tool-marquee mt-12 overflow-hidden md:mt-16"
+      aria-label="Tools I use"
+    >
+      <ul className="flex w-max items-center">
+        {row.map((tool, index) => (
+          <li
+            key={`${tool.name}-${index}`}
+            className="tool-marquee-item inline-flex shrink-0 items-center gap-2 pr-8 text-[13px] font-medium tracking-tight text-subtle"
+            aria-hidden={index >= tools.length ? true : undefined}
+          >
+            <tool.icon />
+            {tool.name}
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }

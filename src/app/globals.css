@@ -90,6 +90,10 @@ body {
   will-change: transform;
 }
 
+.tool-marquee {
+  mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+}
+
 .site-shell {
   position: relative;
 }
@@ -153,6 +157,28 @@ button,
 
 .btn-primary:hover {
   opacity: 0.82;
+}
+
+.mobile-project-cta {
+  position: fixed;
+  right: 1.25rem;
+  bottom: calc(1.25rem + env(safe-area-inset-bottom, 0px));
+  left: 1.25rem;
+  z-index: 80;
+  padding: 0.9rem 1.35rem;
+  box-shadow: var(--shadow);
+}
+
+@media (min-width: 1024px) {
+  .mobile-project-cta {
+    display: none !important;
+  }
+}
+
+@media (max-width: 1023px) {
+  body {
+    padding-bottom: 5.75rem;
+  }
 }
 
 .haller-demo-cta {

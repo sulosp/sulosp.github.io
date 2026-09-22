@@ -25,9 +25,10 @@ export default function Statement() {
               create long-lasting value. That is the work: make the useful feel
               considered, and the considered feel effortless.
             </p>
-            <ToolList />
           </Reveal>
         </div>
+
+        <ToolList />
       </div>
     </section>
   );
