@@ -13,12 +13,16 @@ export default function CaseImage({
   caption,
   className = "my-10 md:my-14",
   priority = false,
+  width = 1280,
+  height = 832,
 }: {
   src: string;
   alt: string;
   caption?: string;
   className?: string;
   priority?: boolean;
+  width?: number;
+  height?: number;
 }) {
   return (
     <figure className={`case-frame w-full select-none ${className}`} onContextMenu={prevent}>
@@ -26,8 +30,8 @@ export default function CaseImage({
         <Image
           src={src}
           alt={alt}
-          width={1280}
-          height={832}
+          width={width}
+          height={height}
           priority={priority}
           draggable={false}
           onContextMenu={prevent}

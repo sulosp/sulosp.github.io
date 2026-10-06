@@ -142,23 +142,6 @@ export default function HallerCaseStudy() {
                 romance, structured and legible where it needs to function as a booking site.
               </p>
             </Reveal>
-            <figure className="my-10 w-full md:my-14">
-              <div className="relative aspect-[16/9] w-full overflow-hidden rounded-[1.35rem] bg-[var(--image-bg)]">
-                <iframe
-                  src="https://embed.figma.com/design/OYu8vTYOVzxkkzNNwMaYhR/Haller-Natural?node-id=0-1&embed-host=share"
-                  title="Haller Natural"
-                  width="800"
-                  height="450"
-                  className="absolute inset-0 h-full w-full"
-                  style={{ border: "1px solid rgba(0, 0, 0, 0.1)" }}
-                  allowFullScreen
-                />
-              </div>
-              <figcaption className="mt-3 text-[13px] leading-6 text-faint">
-                Serif wordmark against tracked-out UI labels — romance in the image, structure in
-                the interface.
-              </figcaption>
-            </figure>
           </section>
 
           <section className="pt-16 md:pt-20">
@@ -197,7 +180,7 @@ export default function HallerCaseStudy() {
                 Detail work: the parts that don&apos;t photograph well
               </h2>
               <p className="mt-5 text-[15px] leading-8 text-subtle sm:text-base">
-                Two templates that don&apos;t make it into most portfolio case studies, but
+                A template that doesn&apos;t make it into most portfolio case studies, but
                 mattered here:
               </p>
               <ul className="mt-6 list-disc space-y-4 pl-5 text-[15px] leading-8 text-subtle sm:text-base">
@@ -213,21 +196,6 @@ export default function HallerCaseStudy() {
               src="/images/haller/room.png"
               alt="Family Panorama Suite room detail"
               caption="Room detail — Family Panorama Suite."
-            />
-            <Reveal>
-              <ul className="list-disc space-y-4 pl-5 text-[15px] leading-8 text-subtle sm:text-base">
-                <li>
-                  <span className="font-medium text-foreground">The pricing page</span> —
-                  seasonal rate tables, per-night surcharges, tax disclosures. Dense,
-                  legally-necessary content that still needed to sit inside a hotel brand
-                  that&apos;s otherwise about soft light and mountain views.
-                </li>
-              </ul>
-            </Reveal>
-            <CaseImage
-              src="/images/haller/pricing.png"
-              alt="Seasonal pricing table"
-              caption="Pricing — seasonal rate tables without losing the brand."
             />
           </section>
         </article>

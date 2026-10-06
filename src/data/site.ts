@@ -64,6 +64,24 @@ export const projects: Project[] = [
     image: "/images/haller/hero.png",
   },
   {
+    title: "Fans Wallet",
+    summary:
+      "a GETIN card inside the Fans events app — load a balance, send it to someone you came with, and redeem a voucher without turning the wallet into a bank.",
+    year: "2025",
+    categories: ["figma"],
+    slug: "fans-wallet",
+    image: "/images/fans/cover.png",
+  },
+  {
+    title: "GETIN",
+    summary:
+      "the public events site — a dark homepage that opens on the night, then the artists, producers, and rooms in a city.",
+    year: "2025",
+    categories: ["figma"],
+    slug: "getin-website",
+    image: "/images/getin/cover.png",
+  },
+  {
     title: "Solace Health",
     summary:
       "a calm patient journey, from first booking to follow-up, for a clinic network that needed to feel human at every tap.",

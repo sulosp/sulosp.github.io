@@ -101,7 +101,7 @@ export default function WorkGallery() {
           </a>
         </div>
 
-        {projects.map((project) => {
+        {projects.slice(0, 4).map((project) => {
           const card = (
             <>
               <div className="media-frame media-hover relative h-[70vh] w-full overflow-hidden">
