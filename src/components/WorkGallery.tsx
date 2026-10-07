@@ -5,14 +5,9 @@ import Image from "next/image";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { projects, workCategories, type Project, type WorkCategoryId } from "@/data/site";
-import ProductMock from "./ProductMock";
+import { projects, type Project } from "@/data/site";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
-
-function categoryShort(id: WorkCategoryId) {
-  return workCategories.find((category) => category.id === id)?.short ?? id;
-}
 
 function GalleryMedia({ project }: { project: Project }) {
   if (project.image) {
@@ -25,10 +20,6 @@ function GalleryMedia({ project }: { project: Project }) {
         sizes="80vw"
       />
     );
-  }
-
-  if (project.mock) {
-    return <ProductMock kind={project.mock} className="h-full" />;
   }
 
   return (
@@ -101,16 +92,16 @@ export default function WorkGallery() {
           </a>
         </div>
 
-        {projects.slice(0, 4).map((project) => {
+        {projects.map((project) => {
           const card = (
             <>
               <div className="media-frame media-hover relative h-[70vh] w-full overflow-hidden">
                 <GalleryMedia project={project} />
               </div>
               <div className="mt-4 flex items-end justify-between gap-4">
-                <h3 className="text-[17px] font-semibold tracking-[-0.02em]">{project.title}</h3>
-                <p className="text-[12px] tracking-[0.04em] text-faint uppercase">
-                  {project.categories.map(categoryShort).join(" · ")}
+                <h3 className="shrink-0 text-[17px] font-semibold tracking-[-0.02em]">{project.title}</h3>
+                <p className="text-right text-[12px] leading-5 tracking-[0.04em] text-faint uppercase">
+                  {project.tools.join(" · ")}
                 </p>
               </div>
             </>

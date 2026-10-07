@@ -3,7 +3,6 @@
 import { useState } from "react";
 import Image from "next/image";
 import { projects, workCategories, type Project, type WorkCategoryId } from "@/data/site";
-import ProductMock from "./ProductMock";
 import Reveal from "./Reveal";
 
 const filters = [{ id: "all", label: "All" }, ...workCategories] as const;
@@ -24,10 +23,6 @@ function ProjectMedia({ project, priority = false }: { project: Project; priorit
         sizes="(max-width: 768px) 100vw, 540px"
       />
     );
-  }
-
-  if (project.mock) {
-    return <ProductMock kind={project.mock} className="h-full min-h-[220px]" />;
   }
 
   return (
@@ -106,8 +101,8 @@ export default function Work() {
                   <p className="mt-2 text-[14px] leading-6 text-subtle md:text-[15px] md:leading-7">
                     {project.summary}
                   </p>
-                  <p className="mt-3 text-[12px] tracking-[0.04em] text-faint uppercase">
-                    {project.categories.map(categoryShort).join(" · ")}
+                  <p className="mt-3 text-[12px] leading-5 tracking-[0.04em] text-faint uppercase">
+                    {project.tools.join(" · ")}
                   </p>
                 </>
               );

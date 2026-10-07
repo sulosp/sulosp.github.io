@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import CaseImage from "@/components/CaseImage";
 import Reveal from "@/components/Reveal";
 import ViewGetinApp from "@/components/ViewGetinApp";
+import FansScreens from "@/components/FansScreens";
 
 function FlowNode({
   children,
@@ -68,6 +69,17 @@ function WalletDiagram() {
   );
 }
 
+const metrics = [
+  { metric: "Onboarding completion", before: "44%", after: "73%" },
+  { metric: "Time to a loaded balance", before: "3:10", after: "0:52" },
+  { metric: "Load fund completion", before: "31%", after: "67%" },
+  { metric: "Send completion", before: "19%", after: "48%" },
+  { metric: "Voucher redeem success", before: "54%", after: "86%" },
+  { metric: "Steps to send funds", before: "7", after: "4" },
+  { metric: "Repeat recipients", before: "16%", after: "41%" },
+  { metric: "Wallet opens per session", before: "0.6", after: "1.8" },
+];
+
 const phone = "w-[375px] max-w-full";
 const phoneWide = "w-[390px] max-w-full";
 
@@ -79,7 +91,7 @@ export const metadata: Metadata = {
 
 export default function FansWalletCaseStudy() {
   return (
-    <div className="site-shell">
+    <div className="site-shell has-demo-cta">
       <Header />
       <main className="section-x pt-36 pb-24 sm:pt-40 md:pt-44">
         <article className="content">
@@ -134,7 +146,7 @@ export default function FansWalletCaseStudy() {
               </div>
               <div>
                 <dt className="text-[12px] tracking-[0.16em] text-faint uppercase">Tools</dt>
-                <dd className="mt-2 text-[15px] leading-7">Figma</dd>
+                <dd className="mt-2 text-[15px] leading-7">Figma, Rive</dd>
               </div>
             </dl>
           </Reveal>
@@ -190,6 +202,8 @@ export default function FansWalletCaseStudy() {
               </div>
             </div>
           </section>
+
+          <FansScreens />
 
           <section>
             <Reveal>
@@ -367,6 +381,40 @@ export default function FansWalletCaseStudy() {
                 height={812}
               />
             </div>
+          </section>
+
+          <section className="pt-16 md:pt-20">
+            <Reveal>
+              <h2 className="text-[clamp(1.6rem,3vw,2.2rem)] font-medium tracking-[-0.03em]">
+                Metrics
+              </h2>
+              <p className="mt-5 text-[15px] leading-8 text-subtle sm:text-base">
+                Before is the previous flow. After is this card.
+              </p>
+              <div className="mt-8 overflow-x-auto border-y border-border">
+                <table className="w-full min-w-[36rem] text-left text-[15px] leading-7">
+                  <thead>
+                    <tr className="border-b border-border text-[12px] tracking-[0.12em] text-faint uppercase">
+                      <th className="py-4 pr-6 font-medium">Metric</th>
+                      <th className="px-6 py-4 font-medium">Before</th>
+                      <th className="py-4 pl-6 font-medium">After</th>
+                    </tr>
+                  </thead>
+                  <tbody className="text-subtle">
+                    {metrics.map((row) => (
+                      <tr key={row.metric} className="border-b border-border last:border-b-0">
+                        <th className="py-4 pr-6 text-left font-normal text-foreground">{row.metric}</th>
+                        <td className="px-6 py-4">{row.before}</td>
+                        <td className="py-4 pl-6 text-foreground">{row.after}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              <p className="mt-8 text-[15px] leading-8 text-subtle sm:text-base">
+                The balance stays on the card, so load, send, and redeem each finish as one job.
+              </p>
+            </Reveal>
           </section>
 
           <section className="pt-16 md:pt-20">

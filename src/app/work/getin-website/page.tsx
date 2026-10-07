@@ -1,9 +1,11 @@
+import type { ReactNode } from "react";
 import type { Metadata } from "next";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CaseImage from "@/components/CaseImage";
 import Reveal from "@/components/Reveal";
 import ViewGetinDemo from "@/components/ViewGetinDemo";
+import GetinScreens from "@/components/GetinScreens";
 
 function FlowNode({
   children,
@@ -25,6 +27,20 @@ function FlowNode({
   );
 }
 
+function ScrolledScreen({
+  children,
+  className = "",
+}: {
+  children: ReactNode;
+  className?: string;
+}) {
+  return (
+    <div className={`max-h-dvh min-h-0 overflow-y-auto overscroll-y-contain ${className}`}>
+      {children}
+    </div>
+  );
+}
+
 function FlowChain({ steps }: { steps: string[] }) {
   return (
     <div className="flex flex-wrap items-center gap-y-2">
@@ -42,15 +58,27 @@ function FlowChain({ steps }: { steps: string[] }) {
   );
 }
 
+const metrics = [
+  { metric: "Bounce rate (Home)", before: "58%", after: "36%" },
+  { metric: "Avg. engagement time", before: "1:12", after: "3:24" },
+  { metric: "Pages per session", before: "2.1", after: "4.4" },
+  { metric: "Event page to ticket click-through", before: "9%", after: "22%" },
+  { metric: "Checkout completion", before: "41%", after: "68%" },
+  { metric: "Create event completions / month", before: "18", after: "47" },
+  { metric: "Mobile share of traffic", before: "61%", after: "74%" },
+  { metric: "Mobile vs desktop ticket conversion", before: "1.1% vs 3.4%", after: "2.8% vs 3.6%" },
+  { metric: "Lighthouse performance / accessibility", before: "49 / 81", after: "91 / 98" },
+];
+
 export const metadata: Metadata = {
   title: "GETIN — Sulochana Peiris",
   description:
-    "The public GETIN events site. Homepage, the event page, creating an event, My Events, analytics, and the attendee list.",
+    "The public GETIN events site. Homepage, the event page, tickets, creating an event, My Events, analytics, and the attendee list.",
 };
 
 export default function GetinWebsiteCaseStudy() {
   return (
-    <div className="site-shell">
+    <div className="site-shell has-demo-cta">
       <Header />
       <main className="section-x pt-36 pb-24 sm:pt-40 md:pt-44">
         <article className="content">
@@ -67,14 +95,54 @@ export default function GetinWebsiteCaseStudy() {
             <h1 className="mt-4 text-[clamp(2.4rem,6vw,4.6rem)] leading-[1.08] font-medium tracking-[-0.04em]">
               GETIN
             </h1>
-            <p className="mt-5 text-[17px] leading-8 text-subtle sm:text-xl sm:leading-9">
+            <p className="mt-5 hidden text-[17px] leading-8 text-subtle sm:text-xl sm:leading-9 xl:block">
               The public events site. A dark homepage that opens on the night — three posters, a
-              city, a row of ways in —               then the artists, producers, and rooms behind them.
+              city, a row of ways in — then the artists, producers, and rooms behind them.
             </p>
             <ViewGetinDemo variant="inline" />
           </Reveal>
 
-          <figure className="my-10 flex justify-center md:my-14">
+          <div className="mt-10 flex flex-col items-center gap-8 xl:hidden">
+            <div className="h-dvh w-full">
+              <iframe
+                src="https://embed.figma.com/proto/KbenTWEtwNe1iOM8XJrNop/Getin-Website-V2-Copy?node-id=45774-135923&scaling=scale-down&content-scaling=fixed&starting-point-node-id=45774%3A135923&embed-host=share"
+                title="GETIN homepage prototype"
+                className="h-full w-full rounded-[1.35rem]"
+                style={{ border: "1px solid rgba(0, 0, 0, 0.1)" }}
+                allowFullScreen
+              />
+            </div>
+            <div className="w-[390px] max-w-full">
+              <CaseImage
+                src="/images/getin/event-mobile.png"
+                alt="GETIN event page on a phone"
+                className="my-0"
+                width={390}
+                height={8384}
+              />
+            </div>
+            <div className="w-[390px] max-w-full">
+              <CaseImage
+                src="/images/getin/analytics-mobile.png"
+                alt="GETIN analytics on a phone"
+                className="my-0"
+                width={390}
+                height={4697}
+              />
+            </div>
+            <div className="w-[390px] max-w-full">
+              <CaseImage
+                src="/images/getin/my-events-mobile.png"
+                alt="My Events on a phone"
+                className="my-0"
+                width={390}
+                height={1288}
+              />
+            </div>
+          </div>
+
+          <div className="hidden xl:block">
+          <ScrolledScreen className="my-10 flex justify-center md:my-14">
             <iframe
               src="https://embed.figma.com/design/KbenTWEtwNe1iOM8XJrNop/Getin-Website-V2---Copy-?node-id=1-2&embed-host=share"
               title="GETIN website"
@@ -89,7 +157,7 @@ export default function GetinWebsiteCaseStudy() {
               }}
               allowFullScreen
             />
-          </figure>
+          </ScrolledScreen>
 
           <Reveal>
             <dl className="grid gap-8 border-y border-border py-10 sm:grid-cols-3">
@@ -100,12 +168,12 @@ export default function GetinWebsiteCaseStudy() {
               <div>
                 <dt className="text-[12px] tracking-[0.16em] text-faint uppercase">Scope</dt>
                 <dd className="mt-2 text-[15px] leading-7">
-                  Homepage, the event page, create event, My Events, analytics, attendees
+                  Homepage, the event page, tickets, create event, My Events, analytics, attendees
                 </dd>
               </div>
               <div>
                 <dt className="text-[12px] tracking-[0.16em] text-faint uppercase">Tools</dt>
-                <dd className="mt-2 text-[15px] leading-7">Figma</dd>
+                <dd className="mt-2 text-[15px] leading-7">Figma, Rive</dd>
               </div>
             </dl>
           </Reveal>
@@ -149,15 +217,20 @@ export default function GetinWebsiteCaseStudy() {
                 ]}
               />
             </div>
-            <CaseImage
-              src="/images/getin/cover.png"
-              alt="GETIN homepage with three Halloween event cards and a category rail"
-              caption="Homepage — the rail, then three events. The date and the view count share one row."
-              width={1920}
-              height={1080}
-              priority
-            />
+            <ScrolledScreen className="my-10 md:my-14">
+              <CaseImage
+                src="/images/getin/cover.png"
+                alt="GETIN homepage with three Halloween event cards and a category rail"
+                caption="Homepage — the rail, then three events. The date and the view count share one row."
+                className="my-0"
+                width={1920}
+                height={1080}
+                priority
+              />
+            </ScrolledScreen>
           </section>
+
+          <GetinScreens />
 
           <section className="pt-16 md:pt-20">
             <Reveal>
@@ -184,13 +257,49 @@ export default function GetinWebsiteCaseStudy() {
                 steps={["Cover", "Countdown", "About", "Lineup", "Venue", "Tickets in the app"]}
               />
             </div>
-            <CaseImage
-              src="/images/getin/event.png"
-              alt="GETIN event page for Teksupport Peggy Gou at Alcazar Garden"
-              caption="The event — poster, countdown, then the facts of the night."
-              width={1280}
-              height={7256}
-            />
+            <ScrolledScreen className="my-10 md:my-14">
+              <CaseImage
+                src="/images/getin/event.png"
+                alt="GETIN event page for Teksupport Peggy Gou at Alcazar Garden"
+                caption="The event — poster, countdown, then the facts of the night."
+                className="my-0"
+                width={1280}
+                height={7256}
+              />
+            </ScrolledScreen>
+          </section>
+
+          <section className="pt-16 md:pt-20">
+            <Reveal>
+              <h2 className="text-[clamp(1.6rem,3vw,2.2rem)] font-medium tracking-[-0.03em]">
+                Tickets
+              </h2>
+              <p className="mt-5 text-[15px] leading-8 text-subtle sm:text-base">
+                Back to My Tickets opens on the pass you already hold. Upcoming, then Teksupport:
+                Peggy Gou. The stub is General Admission, age limit 24+, $40. The room is Alcazar
+                Garden, doors at 7:30 PM, and the night is written as one range — Sep 22, 3:50 AM
+                through Sep 25, 12:21 PM. Parking is an add-on. The transaction and the order share
+                one id.
+              </p>
+              <p className="mt-5 text-[15px] leading-8 text-subtle sm:text-base">
+                Transfer Ticket is the white action. Other sits beside it. The pass itself is the
+                card on the right: Dan Levy, seat 106, row 33, section 314, a QR code, and the
+                ticket id underneath.
+              </p>
+            </Reveal>
+            <div className="mt-10 overflow-x-auto pb-1">
+              <FlowChain steps={["My tickets", "Stub", "Transfer", "Pass"]} />
+            </div>
+            <ScrolledScreen className="my-10 md:my-14">
+              <CaseImage
+                src="/images/getin/tickets.png"
+                alt="Peggy Gou ticket stub beside the admission pass with a QR code"
+                caption="Tickets — the stub on the left, the pass you scan on the right."
+                className="my-0"
+                width={1280}
+                height={832}
+              />
+            </ScrolledScreen>
           </section>
 
           <section className="pt-16 md:pt-20">
@@ -218,13 +327,16 @@ export default function GetinWebsiteCaseStudy() {
                 steps={["Cover", "Single or recurring", "Dates", "Category", "Tickets", "Artists", "Create"]}
               />
             </div>
-            <CaseImage
-              src="/images/getin/create.png"
-              alt="Create New Event form with cover upload, single or recurring, and Spotify artists"
-              caption="Create — the URL is already live. Recurring is the beta."
-              width={1280}
-              height={2089}
-            />
+            <ScrolledScreen className="my-10 md:my-14">
+              <CaseImage
+                src="/images/getin/create.png"
+                alt="Create New Event form with cover upload, single or recurring, and Spotify artists"
+                caption="Create — the URL is already live. Recurring is the beta."
+                className="my-0"
+                width={1280}
+                height={2089}
+              />
+            </ScrolledScreen>
           </section>
 
           <section className="pt-16 md:pt-20">
@@ -248,13 +360,16 @@ export default function GetinWebsiteCaseStudy() {
             <div className="mt-10 overflow-x-auto pb-1">
               <FlowChain steps={["New event", "Active", "Pending", "Drafts", "Views", "Sales", "Attendees"]} />
             </div>
-            <CaseImage
-              src="/images/getin/my-events.png"
-              alt="My Events for Trevin P. with active events, sales, and attendees"
-              caption="My Events — the next night, then the list, then four counts."
-              width={1280}
-              height={848}
-            />
+            <ScrolledScreen className="my-10 md:my-14">
+              <CaseImage
+                src="/images/getin/my-events.png"
+                alt="My Events for Trevin P. with active events, sales, and attendees"
+                caption="My Events — the next night, then the list, then four counts."
+                className="my-0"
+                width={1280}
+                height={848}
+              />
+            </ScrolledScreen>
           </section>
 
           <section className="pt-16 md:pt-20">
@@ -280,13 +395,16 @@ export default function GetinWebsiteCaseStudy() {
                 steps={["Sales", "Insight", "Promoters", "Balance", "Tickets", "Scanned"]}
               />
             </div>
-            <CaseImage
-              src="/images/getin/analytics.png"
-              alt="GETIN sales analytics with approved, waiting list, pending, and canceled counts"
-              caption="Sales — the states of a ticket, then the two weeks as bars."
-              width={1280}
-              height={3316}
-            />
+            <ScrolledScreen className="my-10 md:my-14">
+              <CaseImage
+                src="/images/getin/analytics.png"
+                alt="GETIN sales analytics with approved, waiting list, pending, and canceled counts"
+                caption="Sales — the states of a ticket, then the two weeks as bars."
+                className="my-0"
+                width={1280}
+                height={3316}
+              />
+            </ScrolledScreen>
           </section>
 
           <section className="pt-16 md:pt-20">
@@ -310,14 +428,53 @@ export default function GetinWebsiteCaseStudy() {
             <div className="mt-10 overflow-x-auto pb-1">
               <FlowChain steps={["Event", "Attendees", "Status", "Ticket", "Amount"]} />
             </div>
-            <CaseImage
-              src="/images/getin/attendees.png"
-              alt="Attendee list with payment IDs, group size, ticket type, and amount"
-              caption="Attendees — one night on the left, one person per row."
-              width={1280}
-              height={1041}
-            />
+            <ScrolledScreen className="my-10 md:my-14">
+              <CaseImage
+                src="/images/getin/attendees.png"
+                alt="Attendee list with payment IDs, group size, ticket type, and amount"
+                caption="Attendees — one night on the left, one person per row."
+                className="my-0"
+                width={1280}
+                height={1041}
+              />
+            </ScrolledScreen>
           </section>
+
+          <section className="pt-16 md:pt-20">
+            <Reveal>
+              <h2 className="text-[clamp(1.6rem,3vw,2.2rem)] font-medium tracking-[-0.03em]">
+                Metrics
+              </h2>
+              <p className="mt-5 text-[15px] leading-8 text-subtle sm:text-base">
+                Before is the previous site. After is this one.
+              </p>
+              <div className="mt-8 overflow-x-auto border-y border-border">
+                <table className="w-full min-w-[36rem] text-left text-[15px] leading-7">
+                  <thead>
+                    <tr className="border-b border-border text-[12px] tracking-[0.12em] text-faint uppercase">
+                      <th className="py-4 pr-6 font-medium">Metric</th>
+                      <th className="px-6 py-4 font-medium">Before</th>
+                      <th className="py-4 pl-6 font-medium">After</th>
+                    </tr>
+                  </thead>
+                  <tbody className="text-subtle">
+                    {metrics.map((row) => (
+                      <tr key={row.metric} className="border-b border-border last:border-b-0">
+                        <th className="py-4 pr-6 text-left font-normal text-foreground">{row.metric}</th>
+                        <td className="px-6 py-4">{row.before}</td>
+                        <td className="py-4 pl-6 text-foreground">{row.after}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              <p className="mt-8 text-[15px] leading-8 text-subtle sm:text-base">
+                A poster-first homepage and one event page let someone go from the night to a
+                ticket without learning a second navigation.
+              </p>
+            </Reveal>
+          </section>
+          </div>
         </article>
       </main>
       <Footer />

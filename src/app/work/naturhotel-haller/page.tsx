@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 
 export default function HallerCaseStudy() {
   return (
-    <div className="site-shell">
+    <div className="site-shell has-demo-cta">
       <Header />
       <main className="section-x pt-36 pb-24 sm:pt-40 md:pt-44">
         <article className="content">

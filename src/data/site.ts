@@ -36,6 +36,7 @@ export const processSteps = [
 
 export const workCategories = [
   { id: "figma", label: "Figma", short: "Figma" },
+  { id: "rive", label: "Rive", short: "Rive" },
   { id: "wordpress", label: "WordPress", short: "WordPress" },
   { id: "webflow", label: "Webflow", short: "Webflow" },
   { id: "custom", label: "Next.js | Sanity | HTML | CSS | JS", short: "Next.js" },
@@ -48,18 +49,39 @@ export type Project = {
   summary: string;
   year: string;
   categories: WorkCategoryId[];
+  tools: string[];
   slug?: string;
   image?: string;
-  mock?: "aurora" | "solace" | "forma" | "nexus";
 };
 
 export const projects: Project[] = [
+  {
+    title: "Dutch Rules",
+    summary:
+      "a homepage for a Melbourne distillery and bar — the shop, the venue, and Club Dutch on one scroll, with the palm mark over a Sri Lankan shore.",
+    year: "2025",
+    categories: ["figma"],
+    tools: ["Figma", "Shopify"],
+    slug: "dutch-rules",
+    image: "/images/dutch-rules/hero.png",
+  },
+  {
+    title: "Proverb",
+    summary:
+      "a sector-first site for a Boston creative agency — the work is the hero, and six industries get a visitor to the case study that matches them.",
+    year: "2024",
+    categories: ["figma", "wordpress"],
+    tools: ["Figma", "WordPress", "Elementor"],
+    slug: "proverb",
+    image: "/images/proverb/cover.png",
+  },
   {
     title: "Naturhotel Haller",
     summary:
       "a seasonal hospitality website for a wellness hotel in South Tyrol — designed and built as one site that can hold summer and winter without either feeling like an afterthought.",
     year: "2024",
     categories: ["figma", "custom"],
+    tools: ["Figma", "Next.js", "React", "Tailwind"],
     slug: "naturhotel-haller",
     image: "/images/haller/hero.png",
   },
@@ -68,7 +90,8 @@ export const projects: Project[] = [
     summary:
       "a GETIN card inside the Fans events app — load a balance, send it to someone you came with, and redeem a voucher without turning the wallet into a bank.",
     year: "2025",
-    categories: ["figma"],
+    categories: ["figma", "rive"],
+    tools: ["Figma", "Rive"],
     slug: "fans-wallet",
     image: "/images/fans/cover.png",
   },
@@ -77,58 +100,10 @@ export const projects: Project[] = [
     summary:
       "the public events site — a dark homepage that opens on the night, then the artists, producers, and rooms in a city.",
     year: "2025",
-    categories: ["figma"],
+    categories: ["figma", "rive"],
+    tools: ["Figma", "Rive"],
     slug: "getin-website",
     image: "/images/getin/cover.png",
-  },
-  {
-    title: "Solace Health",
-    summary:
-      "a calm patient journey, from first booking to follow-up, for a clinic network that needed to feel human at every tap.",
-    year: "2025",
-    categories: ["figma"],
-    mock: "solace",
-  },
-  {
-    title: "Forma Studio",
-    summary:
-      "a brand identity and marketing site for an architecture practice — quiet type, generous space, and a CMS their team can actually run.",
-    year: "2024",
-    categories: ["figma", "custom"],
-    mock: "forma",
-  },
-  {
-    title: "Nexus Platform",
-    summary:
-      "a scalable design system and internal product UI for a B2B operations suite used across three continents.",
-    year: "2024",
-    categories: ["figma"],
-    mock: "nexus",
-  },
-  {
-    title: "Lumen",
-    summary: "a landing page and brand system for an African climate-tech startup.",
-    year: "2024",
-    categories: ["figma", "custom"],
-    mock: "aurora",
-  },
-  {
-    title: "Harbor",
-    summary: "a focused marketing site for an established SaaS analytics company.",
-    year: "2023",
-    categories: ["webflow"],
-  },
-  {
-    title: "Atelier",
-    summary: "a website for an agency-focused content studio.",
-    year: "2023",
-    categories: ["wordpress"],
-  },
-  {
-    title: "Northstar",
-    summary: "a brand refresh and product UI for a consumer budgeting app.",
-    year: "2025",
-    categories: ["figma", "custom"],
   },
 ];
 
