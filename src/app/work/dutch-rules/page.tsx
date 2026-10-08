@@ -105,7 +105,7 @@ export default function DutchRulesCaseStudy() {
               allowFullScreen
             />
           </figure>
-
+          
           <Reveal>
             <dl className="grid gap-8 border-y border-border py-10 sm:grid-cols-3">
               <div>

@@ -48,8 +48,7 @@ export default function HallerCaseStudy() {
               />
             </div>
           </figure>
-
-          <Reveal>
+               <Reveal>
             <dl className="grid gap-8 border-y border-border py-10 sm:grid-cols-3">
               <div>
                 <dt className="text-[12px] tracking-[0.16em] text-faint uppercase">Role</dt>

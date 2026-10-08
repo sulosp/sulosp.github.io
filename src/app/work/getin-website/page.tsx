@@ -105,12 +105,14 @@ export default function GetinWebsiteCaseStudy() {
           <div className="mt-10 flex flex-col items-center gap-8 xl:hidden">
             <div className="h-dvh w-full">
               <iframe
-                src="https://embed.figma.com/proto/KbenTWEtwNe1iOM8XJrNop/Getin-Website-V2-Copy?node-id=45774-135923&scaling=scale-down&content-scaling=fixed&starting-point-node-id=45774%3A135923&embed-host=share"
+                src="https://embed.figma.com/design/KbenTWEtwNe1iOM8XJrNop/Getin-Website?node-id=0-1&embed-host=share"
                 title="GETIN homepage prototype"
                 className="h-full w-full rounded-[1.35rem]"
                 style={{ border: "1px solid rgba(0, 0, 0, 0.1)" }}
                 allowFullScreen
               />
+
+
             </div>
             <div className="w-[390px] max-w-full">
               <CaseImage

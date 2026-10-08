@@ -117,7 +117,7 @@ export default function FansWalletCaseStudy() {
 
           <figure className="my-10 flex justify-center md:my-14">
             <iframe
-              src="https://embed.figma.com/design/D0tyTSmUDiFpN6pdzDTKB6/Fans-APP--Wallet-?node-id=13548-27745&embed-host=share"
+              src="https://embed.figma.com/design/D0tyTSmUDiFpN6pdzDTKB6/Fans-APP--Wallet-?node-id=2148-28595&embed-host=share"
               title="Fans App Wallet"
               width={800}
               height={450}
@@ -131,7 +131,7 @@ export default function FansWalletCaseStudy() {
               allowFullScreen
             />
           </figure>
-
+       
           <Reveal>
             <dl className="grid gap-8 border-y border-border py-10 sm:grid-cols-3">
               <div>
