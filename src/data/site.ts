@@ -1,7 +1,7 @@
 export const site = {
   name: "Sulochana Peiris",
   wordmark: "sulochana",
-  title: "Sulochana Peiris — UI UX Designer and Developer",
+  title: "Sulochana Peiris | Designer and Developer",
   description:
     "I craft digital experiences, brand identities, design systems, and product interfaces with a balance of beauty and performance.",
   email: "sulosp1992@gmail.com",
