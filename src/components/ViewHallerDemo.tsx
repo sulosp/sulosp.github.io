@@ -1,4 +1,4 @@
-const demoUrl = process.env.NEXT_PUBLIC_HALLER_DEMO_URL ?? "http://localhost:3001";
+const demoUrl = "/hallernatural";
 
 export default function ViewHallerDemo({
   variant = "sticky",
