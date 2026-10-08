@@ -1,15 +1,15 @@
 export const site = {
   name: "Sulochana Peiris",
   wordmark: "sulochana",
-  title: "Sulochana Peiris — UI & UX Design",
+  title: "Sulochana Peiris — UI UX Designer and Developer",
   description:
-    "I craft easy, human-centric digital experiences — brand identities, design systems, and product interfaces with a balance of beauty and performance.",
-  email: "hello@sulochanapeiris.design",
-  location: "Colombo · Remote",
+    "I craft digital experiences, brand identities, design systems, and product interfaces with a balance of beauty and performance.",
+  email: "sulosp1992@gmail.com",
+  location: "Kleve. Germany · Remote",
   socials: [
-    { label: "Dribbble", href: "https://dribbble.com" },
-    { label: "LinkedIn", href: "https://linkedin.com" },
-    { label: "Behance", href: "https://behance.net" },
+    { label: "Dribbble", href: "https://dribbble.com/sulosp" },
+    { label: "LinkedIn", href: "https://www.linkedin.com/in/sulosp/" },
+    { label: "Github", href: "https://github.com/sulosp" },
   ],
 };
 
@@ -58,7 +58,7 @@ export const projects: Project[] = [
   {
     title: "Dutch Rules",
     summary:
-      "a homepage for a Melbourne distillery and bar — the shop, the venue, and Club Dutch on one scroll, with the palm mark over a Sri Lankan shore.",
+      "a homepage for a Melbourne distillery and bar,the shop, the venue, and Club Dutch on one scroll, with the palm mark over a Sri Lankan shore.",
     year: "2025",
     categories: ["figma"],
     tools: ["Figma", "Shopify"],
@@ -68,7 +68,7 @@ export const projects: Project[] = [
   {
     title: "Proverb",
     summary:
-      "a sector-first site for a Boston creative agency — the work is the hero, and six industries get a visitor to the case study that matches them.",
+      "a sector-first site for a Boston creative agency. The work is the hero, and six industries get a visitor to the case study that matches them.",
     year: "2024",
     categories: ["figma", "wordpress"],
     tools: ["Figma", "WordPress", "Elementor"],
@@ -78,7 +78,7 @@ export const projects: Project[] = [
   {
     title: "Naturhotel Haller",
     summary:
-      "a seasonal hospitality website for a wellness hotel in South Tyrol — designed and built as one site that can hold summer and winter without either feeling like an afterthought.",
+      "a seasonal hospitality website for a wellness hotel in South Tyrol designed and built as one site that can hold summer and winter without either feeling like an afterthought.",
     year: "2024",
     categories: ["figma", "custom"],
     tools: ["Figma", "Next.js", "React", "Tailwind"],
@@ -88,7 +88,7 @@ export const projects: Project[] = [
   {
     title: "Fans Wallet",
     summary:
-      "a GETIN card inside the Fans events app — load a balance, send it to someone you came with, and redeem a voucher without turning the wallet into a bank.",
+      "a GETIN card inside the Fans events app. Load a balance, send it to someone you came with, and redeem a voucher without turning the wallet into a bank.",
     year: "2025",
     categories: ["figma", "rive"],
     tools: ["Figma", "Rive"],
@@ -98,7 +98,7 @@ export const projects: Project[] = [
   {
     title: "GETIN",
     summary:
-      "the public events site — a dark homepage that opens on the night, then the artists, producers, and rooms in a city.",
+      "the public events site. A dark homepage that opens on the night, then the artists, producers, and rooms in a city.",
     year: "2025",
     categories: ["figma", "rive"],
     tools: ["Figma", "Rive"],
@@ -109,10 +109,10 @@ export const projects: Project[] = [
 
 export const stats = {
   intro:
-    "Since 2018 I have worked with founders, marketers and product teams from Colombo, London, San Francisco and Singapore — always remotely, always collaboratively.",
+    "Since 2018 I have worked with founders, marketers and product teams from Colombo, Melbourne, San Francisco and Singapore always remotely, always collaboratively.",
   items: [
-    { value: "40+", label: "products shipped" },
-    { value: "12", label: "design systems" },
+    { value: "7+", label: "products shipped" },
+    { value: "10", label: "design systems" },
     { value: "7+", label: "years of craft" },
     { value: "18", label: "brands shaped" },
   ],

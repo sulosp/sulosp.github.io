@@ -15,15 +15,7 @@ export default function Footer() {
             </h2>
             <p className="mt-4 flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-[clamp(2rem,5.2vw,4.2rem)] leading-[1.16] font-medium tracking-[-0.04em]">
               <span>Let&apos;s get</span>
-              <span className="relative inline-flex h-[0.82em] w-[0.82em] overflow-hidden rounded-full bg-image-bg align-middle">
-                <Image
-                  src={images.portrait}
-                  alt=""
-                  width={80}
-                  height={80}
-                  className="h-full w-full object-cover"
-                />
-              </span>
+              
               <span>started.</span>
             </p>
           </Reveal>
@@ -43,7 +35,7 @@ export default function Footer() {
               href={`mailto:${site.email}`}
               className="mt-10 text-sm underline decoration-footer-fg/30 underline-offset-4 hover:decoration-footer-fg"
             >
-              {site.email}
+              Email Me
             </a>
             <div className="mt-8 flex flex-wrap justify-center gap-x-8 gap-y-3 text-xs tracking-wide uppercase opacity-70">
               {site.socials.map((social) => (

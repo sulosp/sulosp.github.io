@@ -47,7 +47,7 @@ export default function Hero() {
         </h1>
 
         <p className="hero-fade mx-auto mt-8 max-w-xl text-[15px] leading-7 text-muted sm:mt-10 sm:text-base sm:leading-8">
-          Finding the balance between aesthetic beauty and technical performance — I
+          Finding the balance between aesthetic beauty and technical performance. I
           create future-proof identities, scalable systems and human-friendly digital
           products.
         </p>
