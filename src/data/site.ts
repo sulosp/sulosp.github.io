@@ -38,7 +38,7 @@ export const workCategories = [
   { id: "figma", label: "Figma", short: "Figma" },
   { id: "rive", label: "Rive", short: "Rive" },
   { id: "wordpress", label: "WordPress", short: "WordPress" },
-  { id: "webflow", label: "Webflow", short: "Webflow" },
+  { id: "shopify", label: "Shopify", short: "Shopify" },
   { id: "custom", label: "Next.js | Sanity | HTML | CSS | JS", short: "Next.js" },
 ] as const;
 
@@ -60,7 +60,7 @@ export const projects: Project[] = [
     summary:
       "a homepage for a Melbourne distillery and bar,the shop, the venue, and Club Dutch on one scroll, with the palm mark over a Sri Lankan shore.",
     year: "2025",
-    categories: ["figma"],
+    categories: ["figma", "shopify"],
     tools: ["Figma", "Shopify"],
     slug: "dutch-rules",
     image: "/images/dutch-rules/hero.png",

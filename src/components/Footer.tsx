@@ -21,7 +21,7 @@ export default function Footer() {
           </Reveal>
           <Reveal delay={0.08} className="mt-10">
             <a href={`mailto:${site.email}`} className="btn-primary rounded-[50px]">
-              Chat to me
+              Chat with me
             </a>
           </Reveal>
         </div>

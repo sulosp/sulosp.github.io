@@ -5,7 +5,7 @@ import { createPortal } from "react-dom";
 import { usePathname } from "next/navigation";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { navLinks, site } from "@/data/site";
+import { navLinks } from "@/data/site";
 import ThemeToggle from "./ThemeToggle";
 
 gsap.registerPlugin(useGSAP);
@@ -61,11 +61,17 @@ export default function Header() {
         className="section-x fixed top-0 right-0 left-0 z-50 bg-background py-5 md:py-6"
       >
         <div className="content flex items-center justify-between gap-6">
-          <a href="/" className="text-[15px] font-semibold tracking-tight lowercase">
-            {site.wordmark}
+          <a
+            href="/"
+            className="text-[20px] font-bold leading-none tracking-tight text-foreground transition-opacity hover:opacity-80"
+          >
+            SP.
           </a>
 
-          <nav className="hidden items-center gap-10 lg:flex" aria-label="Primary">
+          <nav
+            className="absolute top-1/2 left-1/2 hidden -translate-x-1/2 -translate-y-1/2 items-center gap-10 lg:flex"
+            aria-label="Primary"
+          >
             {navLinks.map((link) => (
               <a
                 key={link.href}
