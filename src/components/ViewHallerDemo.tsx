@@ -1,4 +1,4 @@
-const demoUrl = "/hallernatural";
+const demoUrl = "/naturhaller";
 
 export default function ViewHallerDemo({
   variant = "sticky",
