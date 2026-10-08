@@ -150,7 +150,7 @@ export default function DutchRulesCaseStudy() {
                 Two doors, equal weight
               </h2>
               <p className="mt-5 text-[15px] leading-8 text-subtle sm:text-base">
-                The hero is a Sri Lankan shore with the palm mark over it — the origin, not a
+                The hero is a shore with the palm mark over it. The origin, not a
                 product shot. Under the line about contemporary spirits and their roots, the
                 page splits into two cards of the same size. Visit our venue is the bar,
                 distillery, and events. Explore the range is the bottle. Neither is a secondary
